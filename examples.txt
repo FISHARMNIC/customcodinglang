@@ -1,0 +1,39 @@
+//-- ADDING --//
+@counter : dedicate {1,0}
+outlog {$counter}
+set {#counter} <= $counter + 1 ;
+outlog {$counter}
+//-------//
+
+//-- SIMPLE SET --//
+@counter : dedicate {1,0}
+@greeting : dedicate {?,Hello_World}
+@loopStart : dedicate {3,&line}
+
+outlog {$greeting}
+set {#greeting, Adios}
+outlog {$greeting}
+//-------//
+
+//-- EASY LOOPS --//
+@counter : dedicate {2} <= 0
+@greeting : dedicate {?} <= Hello_World
+
+outlog {$greeting}
+
+@loopStart : dedicate {3} <= &line
+    set {#counter} <= $counter + 1
+    outlog {$counter}
+    ji {$loopStart} <= $counter < 10 ;
+
+outlog {done!}
+//-------//
+
+//-- ARRAYS --//
+@myArr : array {3,3} <= [ABC,DEF,GHI]
+outlog {} <= index {$myArr,0}
+outlog {} <= index {$myArr,1}
+outlog {} <= index {$myArr,2}
+setInd {#myArr,0} <= 123
+outlog {} <= index {$myArr,0}
+//-------//
